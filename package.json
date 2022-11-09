@@ -1,0 +1,36 @@
+{
+	"name": "rod",
+	"version": "1.0.0",
+	"description": "Remix form data validator powered by Zod",
+	"keywords": [
+		"remix",
+		"zod",
+		"form",
+		"validator"
+	],
+	"author": "Domantas Mauruča <domantas.mauruca@gmail.com>",
+	"license": "MIT",
+	"files": [
+		"dist"
+	],
+	"main": "dist/index.js",
+	"module": "dist/index.js",
+	"types": "dist/index.d.ts",
+	"scripts": {
+		"build": "node build.js && tsc -b",
+		"test": "vitest"
+	},
+	"devDependencies": {
+		"@remix-run/server-runtime": "^1.7.2",
+		"esbuild": "^0.15.13",
+		"prettier": "^2.7.1",
+		"typescript": "^4.8.4",
+		"vite": "^3.2.2",
+		"vitest": "^0.24.5",
+		"zod": "^3.19.1"
+	},
+	"peerDependencies": {
+		"@remix-run/server-runtime": "1.x",
+		"zod": "3.x"
+	}
+}

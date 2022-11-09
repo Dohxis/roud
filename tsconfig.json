@@ -1,0 +1,12 @@
+{
+	"compilerOptions": {
+		"declaration": true,
+		"target": "esnext",
+		"lib": ["esnext", "dom"],
+		"strict": true,
+		"esModuleInterop": true,
+		"moduleResolution": "node",
+		"outDir": "dist",
+		"types": ["vitest/globals"]
+	}
+}
