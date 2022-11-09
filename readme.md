@@ -21,7 +21,7 @@ Rod inherits requirements from Zod itself:
 
 -   Strict mode activated
 
-    ```json
+    ```ts
     // tsconfig.json
     {
     	// ...
