@@ -1,8 +1,8 @@
 <p align="center">
-  <img src="static/logo.png" width="200px" align="center" alt="Rod logo" />
-  <h1 align="center">Rod</h1>
+  <img src="static/logo.png" width="200px" align="center" alt="Roud logo" />
+  <h1 align="center">Roud</h1>
   <p align="center">
-    Rod is a Laravel-inspired validation library built for Remix powered by Zod
+    Roud is a Laravel-inspired validation library built for Remix powered by Zod
   </p>
 </p>
 
@@ -18,7 +18,7 @@
 
 ### Requirements
 
-Rod inherits requirements from Zod itself:
+Roud inherits requirements from Zod itself:
 
 -   Typescript 4.1+
 
@@ -37,19 +37,19 @@ Rod inherits requirements from Zod itself:
 
 ### Node
 
-Zod is a peer dependency and must be installed alongside Rod.
+Zod is a peer dependency and must be installed alongside Roud.
 
 ```bash
-npm install rod zod
+npm install roud zod
 ```
 
 ### Basic usage
 
-Rod fully extends Zod and for the most parts can be used outside of Remix. For simplicity reasons the following example will show how it should be used within Remix action.
+Roud fully extends Zod and for the most parts can be used outside of Remix. For simplicity reasons the following example will show how it should be used within Remix action.
 
 ```ts
 import { ActionArgs } from "@remix-run/server-runtime";
-import { r } from "rod";
+import { r } from "roud";
 
 const action = ({ request }: ActionArgs) => {
 	const Schema = r.schema({
@@ -68,7 +68,7 @@ const action = ({ request }: ActionArgs) => {
 };
 ```
 
-> If you used Zod before, `parseRequestFormData()` acts the same as `parse()` and throws `RodError` if validation fails. You can also use `safeParseRequestFormData` which instead of throwing will return either the data or `RodError`.
+> If you used Zod before, `parseRequestFormData()` acts the same as `parse()` and throws `RoudError` if validation fails. You can also use `safeParseRequestFormData` which instead of throwing will return either the data or `RoudError`.
 
 ## Booleans
 
@@ -118,11 +118,11 @@ const Schema = r.schema({
 
 ## Errors
 
-Rod extends the default `ZodError` which simplifies passing errors back to the form. Here is an basic example:
+Roud extends the default `ZodError` which simplifies passing errors back to the form. Here is an basic example:
 
 ```ts
 import { ActionArgs } from "@remix-run/server-runtime";
-import { r } from "rod";
+import { r } from "roud";
 
 const action = ({ request }: ActionArgs) => {
 	const Schema = r.schema({

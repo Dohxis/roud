@@ -1,11 +1,11 @@
 import { ZodObject } from "zod";
-import { RodBoolean } from "./types/boolean";
-import { RodSchema } from "./types/schema";
-import { RodNumber } from "./types/number";
+import { RoudBoolean } from "./types/boolean";
+import { RoudSchema } from "./types/schema";
+import { RoudNumber } from "./types/number";
 
 export const r = {
-	boolean: RodBoolean.create,
-	number: RodNumber.create,
-	schema: RodSchema.create,
+	boolean: RoudBoolean.create,
+	number: RoudNumber.create,
+	schema: RoudSchema.create,
 	object: ZodObject.create,
 };

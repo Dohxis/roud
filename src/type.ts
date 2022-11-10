@@ -8,20 +8,20 @@ import {
 	ZodType,
 	ZodTypeDef,
 } from "zod";
-import { RodCheck, RodCheckContextInterface, RodCheckInterface } from "./check";
+import { RoudCheck, RoudCheckContextInterface, RoudCheckInterface } from "./check";
 import {
 	customParse,
 	customSafeParse,
 	CustomSafeParseReturnType,
 } from "./parsing";
 
-export interface RodTypeDefinition<Output> extends ZodTypeDef {
-	checks: RodCheck<Output>[];
+export interface RoudTypeDefinition<Output> extends ZodTypeDef {
+	checks: RoudCheck<Output>[];
 }
 
-export abstract class RodType<Output = any, Input = Output> extends ZodType<
+export abstract class RoudType<Output = any, Input = Output> extends ZodType<
 	Output,
-	RodTypeDefinition<Output>,
+	RoudTypeDefinition<Output>,
 	Input
 > {
 	protected abstract parsedType(): ZodParsedType;
@@ -30,13 +30,13 @@ export abstract class RodType<Output = any, Input = Output> extends ZodType<
 		return input as Output | unknown;
 	}
 
-	protected createCheck<Type extends RodType>(
-		Type: new (args: RodTypeDefinition<Output>) => Type,
-		check: RodCheckInterface<Output>
+	protected createCheck<Type extends RoudType>(
+		Type: new (args: RoudTypeDefinition<Output>) => Type,
+		check: RoudCheckInterface<Output>
 	) {
 		return new Type({
 			...this._def,
-			checks: [...this._def.checks, new RodCheck(check)],
+			checks: [...this._def.checks, new RoudCheck(check)],
 		});
 	}
 
@@ -63,7 +63,7 @@ export abstract class RodType<Output = any, Input = Output> extends ZodType<
 			return INVALID;
 		}
 
-		const checkContext: RodCheckContextInterface<Output> = {
+		const checkContext: RoudCheckContextInterface<Output> = {
 			attribute,
 			value: normalizedInput.data,
 		};

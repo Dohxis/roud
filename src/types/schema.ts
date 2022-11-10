@@ -8,29 +8,29 @@ import {
 	ZodRawShape,
 	ZodTypeAny,
 } from "zod";
-import { RodError } from "../error";
+import { RoudError } from "../error";
 import { customParse, customSafeParse } from "../parsing";
 
 type UnknownKeysParam = "passthrough" | "strict" | "strip";
 
 type SafeParseErrorType<Input> = {
 	success: false;
-	error: RodError<Input>;
+	error: RoudError<Input>;
 };
 
 type SafeParseReturnType<Input, Output> =
 	| SafeParseSuccess<Output>
 	| SafeParseErrorType<Input>;
 
-export class RodSchema<
+export class RoudSchema<
 	T extends ZodRawShape,
 	UnknownKeys extends UnknownKeysParam = "strip",
 	Catchall extends ZodTypeAny = ZodTypeAny,
 	Output = objectOutputType<T, Catchall>,
 	Input = objectInputType<T, Catchall>
 > extends ZodObject<T, UnknownKeys, Catchall, Output, Input> {
-	static create = <T extends ZodRawShape>(shape: T): RodSchema<T> => {
-		return new RodSchema({
+	static create = <T extends ZodRawShape>(shape: T): RoudSchema<T> => {
+		return new RoudSchema({
 			shape: () => shape,
 			unknownKeys: "strip",
 			catchall: ZodNever.create(),

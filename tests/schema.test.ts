@@ -1,7 +1,7 @@
-import { RodError } from "../src/error";
+import { RoudError } from "../src/error";
 import { r } from "../src/index";
 
-describe("RodSchema", () => {
+describe("RoudSchema", () => {
 	const Schema = r.schema({
 		accepted: r.boolean().accepted(),
 		declined: r.boolean().declined(),
@@ -17,7 +17,7 @@ describe("RodSchema", () => {
 	it("should throw on validation error on parse()", () => {
 		expect(() =>
 			Schema.parse({ accepted: false, declined: true })
-		).toThrowError(RodError);
+		).toThrowError(RoudError);
 	});
 
 	it("should safeParse() correctly", () => {
@@ -45,7 +45,7 @@ describe("RodSchema", () => {
 		expect(result.success).toBe(false);
 
 		if (!result.success) {
-			expect(result.error).toBeInstanceOf(RodError);
+			expect(result.error).toBeInstanceOf(RoudError);
 		}
 	});
 });

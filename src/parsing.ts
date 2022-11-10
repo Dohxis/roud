@@ -1,9 +1,9 @@
 import { SafeParseReturnType, SafeParseSuccess } from "zod";
-import { RodError } from "./error";
+import { RoudError } from "./error";
 
 type SafeParseErrorType<Input> = {
 	success: false;
-	error: RodError<Input>;
+	error: RoudError<Input>;
 };
 
 export type CustomSafeParseReturnType<Input, Output> =
@@ -25,7 +25,7 @@ export const customParse = <Output = any, Input = Output>(
 		{}
 	);
 
-	throw new RodError(errors);
+	throw new RoudError(errors);
 };
 
 export const customSafeParse = <Output = any, Input = Output>(
@@ -41,7 +41,7 @@ export const customSafeParse = <Output = any, Input = Output>(
 	} catch (error) {
 		return {
 			success: false,
-			error: error as RodError<Input>,
+			error: error as RoudError<Input>,
 		};
 	}
 };

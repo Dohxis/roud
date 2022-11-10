@@ -1,7 +1,7 @@
-import { RodError } from "../src/error";
+import { RoudError } from "../src/error";
 import { r } from "../src/index";
 
-describe("RodNumber", () => {
+describe("RoudNumber", () => {
 	const Schema = r.schema({
 		between: r.number().between(0, 10),
 		digits: r.number().digits(5),
@@ -65,22 +65,22 @@ describe("RodNumber", () => {
 	it("should only accept integers when using validators .digits(), .digitsBetween(), .maxDigits(), .minDigits()", () => {
 		expect(r.number().digits(1).parse(1)).toBe(1);
 
-		expect(() => r.number().digits(1).parse(1.1)).toThrowError(RodError);
+		expect(() => r.number().digits(1).parse(1.1)).toThrowError(RoudError);
 
 		expect(r.number().digitsBetween(1, 2).parse(1)).toBe(1);
 
 		expect(() => r.number().digitsBetween(1, 2).parse(1.1)).toThrowError(
-			RodError
+			RoudError
 		);
 
 		expect(r.number().maxDigits(2).parse(1)).toBe(1);
 
-		expect(() => r.number().maxDigits(2).parse(1.1)).toThrowError(RodError);
+		expect(() => r.number().maxDigits(2).parse(1.1)).toThrowError(RoudError);
 
 		expect(r.number().minDigits(2).parse(12)).toBe(12);
 
 		expect(() => r.number().minDigits(2).parse(12.1)).toThrowError(
-			RodError
+			RoudError
 		);
 	});
 });

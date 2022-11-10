@@ -1,9 +1,9 @@
 import { ZodParsedType } from "zod";
-import { RodType } from "../type";
+import { RoudType } from "../type";
 
-export class RodNumber extends RodType<number> {
+export class RoudNumber extends RoudType<number> {
 	static create() {
-		return new RodNumber({
+		return new RoudNumber({
 			checks: [],
 		});
 	}
@@ -19,7 +19,7 @@ export class RodNumber extends RodType<number> {
 	}
 
 	public between(min: number, max: number) {
-		return this.createCheck(RodNumber, {
+		return this.createCheck(RoudNumber, {
 			failedMessage: ({ attribute }) =>
 				`The ${attribute} must be between ${min} and ${max}.`,
 			test: ({ value }) => value >= min && value <= max,
@@ -27,7 +27,7 @@ export class RodNumber extends RodType<number> {
 	}
 
 	public digits(digits: number) {
-		return this.createCheck(RodNumber, {
+		return this.createCheck(RoudNumber, {
 			failedMessage: ({ attribute, value }) =>
 				Number.isSafeInteger(value)
 					? `The ${attribute} must be ${digits} digits.`
@@ -39,7 +39,7 @@ export class RodNumber extends RodType<number> {
 	}
 
 	public digitsBetween(min: number, max: number) {
-		return this.createCheck(RodNumber, {
+		return this.createCheck(RoudNumber, {
 			failedMessage: ({ attribute, value }) =>
 				Number.isSafeInteger(value)
 					? `The ${attribute} must be between ${min} and ${max} digits.`
@@ -52,7 +52,7 @@ export class RodNumber extends RodType<number> {
 	}
 
 	public max(number: number) {
-		return this.createCheck(RodNumber, {
+		return this.createCheck(RoudNumber, {
 			failedMessage: ({ attribute }) =>
 				`The ${attribute} must not be greater than ${number}.`,
 			test: ({ value }) => value < number,
@@ -60,7 +60,7 @@ export class RodNumber extends RodType<number> {
 	}
 
 	public maxDigits(digits: number) {
-		return this.createCheck(RodNumber, {
+		return this.createCheck(RoudNumber, {
 			failedMessage: ({ attribute, value }) =>
 				Number.isSafeInteger(value)
 					? `The ${attribute} must not have more than ${digits} digits.`
@@ -71,7 +71,7 @@ export class RodNumber extends RodType<number> {
 	}
 
 	public min(number: number) {
-		return this.createCheck(RodNumber, {
+		return this.createCheck(RoudNumber, {
 			failedMessage: ({ attribute }) =>
 				`The ${attribute} must not be greater than ${number}.`,
 			test: ({ value }) => value >= number,
@@ -79,7 +79,7 @@ export class RodNumber extends RodType<number> {
 	}
 
 	public minDigits(digits: number) {
-		return this.createCheck(RodNumber, {
+		return this.createCheck(RoudNumber, {
 			failedMessage: ({ attribute, value }) =>
 				Number.isSafeInteger(value)
 					? `The ${attribute} must not have less than ${digits} digits.`

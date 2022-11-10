@@ -1,23 +1,23 @@
-export interface RodCheckContextInterface<ValueType> {
+export interface RoudCheckContextInterface<ValueType> {
 	attribute: string | undefined;
 	value: ValueType;
 }
 
-export interface RodCheckInterface<ValueType> {
-	failedMessage: (context: RodCheckContextInterface<ValueType>) => string;
-	test: (context: RodCheckContextInterface<ValueType>) => boolean;
+export interface RoudCheckInterface<ValueType> {
+	failedMessage: (context: RoudCheckContextInterface<ValueType>) => string;
+	test: (context: RoudCheckContextInterface<ValueType>) => boolean;
 }
 
-export class RodCheck<ValueType> {
-	public constructor(private check: RodCheckInterface<ValueType>) {}
+export class RoudCheck<ValueType> {
+	public constructor(private check: RoudCheckInterface<ValueType>) {}
 
 	public getFailedMessage(
-		context: RodCheckContextInterface<ValueType>
+		context: RoudCheckContextInterface<ValueType>
 	): string {
 		return this.check.failedMessage(context);
 	}
 
-	public test(context: RodCheckContextInterface<ValueType>): boolean {
+	public test(context: RoudCheckContextInterface<ValueType>): boolean {
 		return this.check.test(context);
 	}
 }

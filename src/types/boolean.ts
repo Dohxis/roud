@@ -1,9 +1,9 @@
 import { ZodParsedType } from "zod";
-import { RodType } from "../type";
+import { RoudType } from "../type";
 
-export class RodBoolean extends RodType<boolean> {
+export class RoudBoolean extends RoudType<boolean> {
 	static create() {
-		return new RodBoolean({
+		return new RoudBoolean({
 			checks: [],
 		});
 	}
@@ -29,7 +29,7 @@ export class RodBoolean extends RodType<boolean> {
 	}
 
 	public accepted() {
-		return this.createCheck(RodBoolean, {
+		return this.createCheck(RoudBoolean, {
 			failedMessage: ({ attribute }) =>
 				`The ${attribute} must be accepted.`,
 			test: ({ value }) => value === true,
@@ -37,7 +37,7 @@ export class RodBoolean extends RodType<boolean> {
 	}
 
 	public acceptedIf(callback: () => boolean) {
-		return this.createCheck(RodBoolean, {
+		return this.createCheck(RoudBoolean, {
 			failedMessage: ({ attribute }) =>
 				`The ${attribute} must be accepted.`,
 			test: ({ value }) => (callback() ? value === true : true),
@@ -45,7 +45,7 @@ export class RodBoolean extends RodType<boolean> {
 	}
 
 	public declined() {
-		return this.createCheck(RodBoolean, {
+		return this.createCheck(RoudBoolean, {
 			failedMessage: ({ attribute }) =>
 				`The ${attribute} must be declined.`,
 			test: ({ value }) => value === false,
@@ -53,7 +53,7 @@ export class RodBoolean extends RodType<boolean> {
 	}
 
 	public declinedIf(callback: () => boolean) {
-		return this.createCheck(RodBoolean, {
+		return this.createCheck(RoudBoolean, {
 			failedMessage: ({ attribute }) =>
 				`The ${attribute} must be declined.`,
 			test: ({ value }) => (callback() ? value === false : true),

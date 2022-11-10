@@ -1,7 +1,7 @@
-import { RodError } from "../src/error";
+import { RoudError } from "../src/error";
 import { r } from "../src/index";
 
-describe("RodBoolean", () => {
+describe("RoudBoolean", () => {
 	it("should normalize and parse truthy values correctly", () => {
 		expect(r.boolean().parse("yes")).toEqual(true);
 
@@ -31,20 +31,20 @@ describe("RodBoolean", () => {
 	});
 
 	it("should throw while parsing", () => {
-		expect(() => r.boolean().parse("string")).toThrowError(RodError);
+		expect(() => r.boolean().parse("string")).toThrowError(RoudError);
 
-		expect(() => r.boolean().parse({})).toThrowError(RodError);
+		expect(() => r.boolean().parse({})).toThrowError(RoudError);
 
-		expect(() => r.boolean().parse([])).toThrowError(RodError);
+		expect(() => r.boolean().parse([])).toThrowError(RoudError);
 
-		expect(() => r.boolean().parse(new Date())).toThrowError(RodError);
+		expect(() => r.boolean().parse(new Date())).toThrowError(RoudError);
 	});
 
 	it("should validate approved()", () => {
 		expect(r.boolean().accepted().parse(true)).toEqual(true);
 
 		expect(() => r.boolean().accepted().parse(false)).toThrowError(
-			RodError
+			RoudError
 		);
 	});
 
@@ -68,13 +68,13 @@ describe("RodBoolean", () => {
 				.boolean()
 				.acceptedIf(() => true)
 				.parse(false)
-		).toThrowError(RodError);
+		).toThrowError(RoudError);
 	});
 
 	it("should validate declined()", () => {
 		expect(r.boolean().declined().parse(false)).toEqual(false);
 
-		expect(() => r.boolean().declined().parse(true)).toThrowError(RodError);
+		expect(() => r.boolean().declined().parse(true)).toThrowError(RoudError);
 	});
 
 	it("should validate declinedIf()", () => {
@@ -97,6 +97,6 @@ describe("RodBoolean", () => {
 				.boolean()
 				.declinedIf(() => true)
 				.parse(true)
-		).toThrowError(RodError);
+		).toThrowError(RoudError);
 	});
 });
