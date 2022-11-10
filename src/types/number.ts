@@ -2,14 +2,20 @@ import { ZodParsedType } from "zod";
 import { RodType } from "../type";
 
 export class RodNumber extends RodType<number> {
-	protected parsedType(): ZodParsedType {
-		return ZodParsedType.number;
-	}
-
 	static create() {
 		return new RodNumber({
 			checks: [],
 		});
+	}
+
+	protected parsedType(): ZodParsedType {
+		return ZodParsedType.number;
+	}
+
+	protected normalizeData(input: unknown): number | unknown {
+		const number = Number(input);
+
+		return isNaN(number) ? input : number;
 	}
 
 	public between(min: number, max: number) {

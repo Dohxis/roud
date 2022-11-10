@@ -1,14 +1,14 @@
 import { RodError } from "../src/error";
 import { r } from "../src/index";
 
-describe("RodForm", () => {
-	const FormSchema = r.form({
+describe("RodSchema", () => {
+	const Schema = r.schema({
 		accepted: r.boolean().accepted(),
 		declined: r.boolean().declined(),
 	});
 
 	it("should parse() correctly", () => {
-		expect(FormSchema.parse({ accepted: true, declined: false })).toEqual({
+		expect(Schema.parse({ accepted: true, declined: false })).toEqual({
 			accepted: true,
 			declined: false,
 		});
@@ -16,12 +16,12 @@ describe("RodForm", () => {
 
 	it("should throw on validation error on parse()", () => {
 		expect(() =>
-			FormSchema.parse({ accepted: false, declined: true })
+			Schema.parse({ accepted: false, declined: true })
 		).toThrowError(RodError);
 	});
 
 	it("should safeParse() correctly", () => {
-		const result = FormSchema.safeParse({
+		const result = Schema.safeParse({
 			accepted: true,
 			declined: false,
 		});
@@ -37,7 +37,7 @@ describe("RodForm", () => {
 	});
 
 	it("should return validation error on safeParse()", () => {
-		const result = FormSchema.safeParse({
+		const result = Schema.safeParse({
 			accepted: false,
 			declined: true,
 		});

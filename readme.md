@@ -93,6 +93,10 @@ const Schema = r.schema({
 
 ## Numbers
 
+Accepts any value parsable by Javascript's `Number()` constructor and normalizes it to real number.
+
+### Available validators
+
 | Validator                                 | Description                                                               |
 | ----------------------------------------- | ------------------------------------------------------------------------- |
 | `between(min: number, max: number)`       | Number must have a size between the given minimum and maximum (inclusive) |
@@ -102,6 +106,15 @@ const Schema = r.schema({
 | `maxDigits(digits: number)`               | Number must have a maximum length of value                                |
 | `min(number: number)`                     | Number must have a minimum value                                          |
 | `minDigits(digits: number)`               | Number must have a minimum length of value                                |
+
+### Example
+
+```ts
+const Schema = r.schema({
+	quantity: r.number().between(0, 10),
+	price: r.number().min(0),
+});
+```
 
 ## Errors
 

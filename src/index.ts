@@ -6,6 +6,6 @@ import { RodNumber } from "./types/number";
 export const r = {
 	boolean: RodBoolean.create,
 	number: RodNumber.create,
-	form: RodSchema.create,
+	schema: RodSchema.create,
 	object: ZodObject.create,
 };

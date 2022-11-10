@@ -1,7 +1,7 @@
 import { r } from "../src/index";
 
 describe("RodNumber", () => {
-	const FormSchema = r.form({
+	const Schema = r.schema({
 		between: r.number().between(0, 10),
 		digits: r.number().digits(5),
 		betweenDigits: r.number().betweenDigits(0, 10),
@@ -11,9 +11,9 @@ describe("RodNumber", () => {
 		minDigits: r.number().minDigits(5),
 	});
 
-	it("should parse correctly", () => {
+	it("should parse() correctly", () => {
 		expect(
-			FormSchema.parse({
+			Schema.parse({
 				between: 5,
 				digits: 12345,
 				betweenDigits: 123,
@@ -31,5 +31,33 @@ describe("RodNumber", () => {
 			min: 1,
 			minDigits: 123456789,
 		});
+	});
+
+	it("should normalize data correctly", () => {
+		expect(
+			Schema.parse({
+				between: "5",
+				digits: "12345",
+				betweenDigits: "123",
+				max: "5",
+				maxDigits: "1",
+				min: "1",
+				minDigits: "123456789",
+			})
+		).toEqual({
+			between: 5,
+			digits: 12345,
+			betweenDigits: 123,
+			max: 5,
+			maxDigits: 1,
+			min: 1,
+			minDigits: 123456789,
+		});
+
+		expect(r.number().parse("10")).toBe(10);
+
+		expect(r.number().parse("10.10")).toBe(10.1);
+
+		expect(r.number().parse("10.00000000001")).toBe(10.00000000001);
 	});
 });
