@@ -4,7 +4,7 @@ describe("RodNumber", () => {
 	const Schema = r.schema({
 		between: r.number().between(0, 10),
 		digits: r.number().digits(5),
-		betweenDigits: r.number().betweenDigits(0, 10),
+		digitsBetween: r.number().digitsBetween(0, 10),
 		max: r.number().max(10),
 		maxDigits: r.number().maxDigits(5),
 		min: r.number().min(0),
@@ -16,7 +16,7 @@ describe("RodNumber", () => {
 			Schema.parse({
 				between: 5,
 				digits: 12345,
-				betweenDigits: 123,
+				digitsBetween: 123,
 				max: 5,
 				maxDigits: 1,
 				min: 1,
@@ -25,7 +25,7 @@ describe("RodNumber", () => {
 		).toEqual({
 			between: 5,
 			digits: 12345,
-			betweenDigits: 123,
+			digitsBetween: 123,
 			max: 5,
 			maxDigits: 1,
 			min: 1,
@@ -38,7 +38,7 @@ describe("RodNumber", () => {
 			Schema.parse({
 				between: "5",
 				digits: "12345",
-				betweenDigits: "123",
+				digitsBetween: "123",
 				max: "5",
 				maxDigits: "1",
 				min: "1",
@@ -47,7 +47,7 @@ describe("RodNumber", () => {
 		).toEqual({
 			between: 5,
 			digits: 12345,
-			betweenDigits: 123,
+			digitsBetween: 123,
 			max: 5,
 			maxDigits: 1,
 			min: 1,

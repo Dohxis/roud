@@ -34,7 +34,7 @@ export class RodNumber extends RodType<number> {
 		});
 	}
 
-	public betweenDigits(min: number, max: number) {
+	public digitsBetween(min: number, max: number) {
 		return this.createCheck(RodNumber, {
 			failedMessage: ({ attribute }) =>
 				`The ${attribute} must be between ${min} and ${max} digits.`,
