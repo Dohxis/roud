@@ -76,10 +76,12 @@ Accepts `true`, `"yes"`, `"on"`, `"true"` `"1"`, `1`, `false`, `"no"`, `"off"`, 
 
 ### Available validators
 
-| Validator    | Description             |
-| ------------ | ----------------------- |
-| `accepted()` | Boolean must be `true`  |
-| `declined()` | Boolean must be `false` |
+| Validator                             | Description                                                 |
+| ------------------------------------- | ----------------------------------------------------------- |
+| `accepted()`                          | Boolean must be `true`                                      |
+| `acceptedIf(callback: () => boolean)` | Boolean must be `true` when `callback` evaluates to `true`  |
+| `declined()`                          | Boolean must be `false`                                     |
+| `declinedIf(callback: () => boolean)` | Boolean must be `false` when `callback` evaluates to `true` |
 
 ### Example
 

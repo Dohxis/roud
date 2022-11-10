@@ -36,11 +36,27 @@ export class RodBoolean extends RodType<boolean> {
 		});
 	}
 
+	public acceptedIf(callback: () => boolean) {
+		return this.createCheck(RodBoolean, {
+			failedMessage: ({ attribute }) =>
+				`The ${attribute} must be accepted.`,
+			test: ({ value }) => (callback() ? value === true : true),
+		});
+	}
+
 	public declined() {
 		return this.createCheck(RodBoolean, {
 			failedMessage: ({ attribute }) =>
 				`The ${attribute} must be declined.`,
 			test: ({ value }) => value === false,
+		});
+	}
+
+	public declinedIf(callback: () => boolean) {
+		return this.createCheck(RodBoolean, {
+			failedMessage: ({ attribute }) =>
+				`The ${attribute} must be declined.`,
+			test: ({ value }) => (callback() ? value === false : true),
 		});
 	}
 }
