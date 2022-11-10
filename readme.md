@@ -101,7 +101,7 @@ Accepts any value parsable by Javascript's `Number()` constructor and normalizes
 | ----------------------------------------- | ------------------------------------------------------------------------- |
 | `between(min: number, max: number)`       | Number must have a size between the given minimum and maximum (inclusive) |
 | `digits(digits: number)`                  | Number must have an exact length of value                                 |
-| `betweenDigits(min: number, max: number)` | Number must have a length between the given mininum and maximum           |
+| `digitsBetween(min: number, max: number)` | Number must have a length between the given mininum and maximum           |
 | `max(number: number)`                     | Number must be less than or equal to a maximum value                      |
 | `maxDigits(digits: number)`               | Number must have a maximum length of value                                |
 | `min(number: number)`                     | Number must have a minimum value                                          |

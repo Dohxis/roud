@@ -1,3 +1,4 @@
+import { RodError } from "../src/error";
 import { r } from "../src/index";
 
 describe("RodNumber", () => {
@@ -59,5 +60,27 @@ describe("RodNumber", () => {
 		expect(r.number().parse("10.10")).toBe(10.1);
 
 		expect(r.number().parse("10.00000000001")).toBe(10.00000000001);
+	});
+
+	it("should only accept integers when using validators .digits(), .digitsBetween(), .maxDigits(), .minDigits()", () => {
+		expect(r.number().digits(1).parse(1)).toBe(1);
+
+		expect(() => r.number().digits(1).parse(1.1)).toThrowError(RodError);
+
+		expect(r.number().digitsBetween(1, 2).parse(1)).toBe(1);
+
+		expect(() => r.number().digitsBetween(1, 2).parse(1.1)).toThrowError(
+			RodError
+		);
+
+		expect(r.number().maxDigits(2).parse(1)).toBe(1);
+
+		expect(() => r.number().maxDigits(2).parse(1.1)).toThrowError(RodError);
+
+		expect(r.number().minDigits(2).parse(12)).toBe(12);
+
+		expect(() => r.number().minDigits(2).parse(12.1)).toThrowError(
+			RodError
+		);
 	});
 });

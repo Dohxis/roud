@@ -28,17 +28,24 @@ export class RodNumber extends RodType<number> {
 
 	public digits(digits: number) {
 		return this.createCheck(RodNumber, {
-			failedMessage: ({ attribute }) =>
-				`The ${attribute} must be ${digits} digits.`,
-			test: ({ value }) => value.toString().length === digits,
+			failedMessage: ({ attribute, value }) =>
+				Number.isSafeInteger(value)
+					? `The ${attribute} must be ${digits} digits.`
+					: `The ${attribute} must be an integer.`,
+			test: ({ value }) =>
+				Number.isSafeInteger(value) &&
+				value.toString().length === digits,
 		});
 	}
 
 	public digitsBetween(min: number, max: number) {
 		return this.createCheck(RodNumber, {
-			failedMessage: ({ attribute }) =>
-				`The ${attribute} must be between ${min} and ${max} digits.`,
+			failedMessage: ({ attribute, value }) =>
+				Number.isSafeInteger(value)
+					? `The ${attribute} must be between ${min} and ${max} digits.`
+					: `The ${attribute} must be an integer.`,
 			test: ({ value }) =>
+				Number.isSafeInteger(value) &&
 				value.toString().length >= min &&
 				value.toString().length <= max,
 		});
@@ -54,9 +61,12 @@ export class RodNumber extends RodType<number> {
 
 	public maxDigits(digits: number) {
 		return this.createCheck(RodNumber, {
-			failedMessage: ({ attribute }) =>
-				`The ${attribute} must not have more than ${digits} digits.`,
-			test: ({ value }) => value.toString().length < digits,
+			failedMessage: ({ attribute, value }) =>
+				Number.isSafeInteger(value)
+					? `The ${attribute} must not have more than ${digits} digits.`
+					: `The ${attribute} must be an integer.`,
+			test: ({ value }) =>
+				Number.isSafeInteger(value) && value.toString().length < digits,
 		});
 	}
 
@@ -64,15 +74,19 @@ export class RodNumber extends RodType<number> {
 		return this.createCheck(RodNumber, {
 			failedMessage: ({ attribute }) =>
 				`The ${attribute} must not be greater than ${number}.`,
-			test: ({ value }) => value > number,
+			test: ({ value }) => value >= number,
 		});
 	}
 
 	public minDigits(digits: number) {
 		return this.createCheck(RodNumber, {
-			failedMessage: ({ attribute }) =>
-				`The ${attribute} must not have more than ${digits} digits.`,
-			test: ({ value }) => value.toString().length > digits,
+			failedMessage: ({ attribute, value }) =>
+				Number.isSafeInteger(value)
+					? `The ${attribute} must not have less than ${digits} digits.`
+					: `The ${attribute} must be an integer.`,
+			test: ({ value }) =>
+				Number.isSafeInteger(value) &&
+				value.toString().length >= digits,
 		});
 	}
 }
