@@ -22,15 +22,15 @@ type SafeParseReturnType<Input, Output> =
 	| SafeParseSuccess<Output>
 	| SafeParseErrorType<Input>;
 
-export class RodForm<
+export class RodSchema<
 	T extends ZodRawShape,
 	UnknownKeys extends UnknownKeysParam = "strip",
 	Catchall extends ZodTypeAny = ZodTypeAny,
 	Output = objectOutputType<T, Catchall>,
 	Input = objectInputType<T, Catchall>
 > extends ZodObject<T, UnknownKeys, Catchall, Output, Input> {
-	static create = <T extends ZodRawShape>(shape: T): RodForm<T> => {
-		return new RodForm({
+	static create = <T extends ZodRawShape>(shape: T): RodSchema<T> => {
+		return new RodSchema({
 			shape: () => shape,
 			unknownKeys: "strip",
 			catchall: ZodNever.create(),

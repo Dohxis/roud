@@ -52,13 +52,13 @@ import { ActionArgs } from "@remix-run/server-runtime";
 import { r } from "rod";
 
 const action = ({ request }: ActionArgs) => {
-	const FormSchema = r.form({
+	const Schema = r.schema({
 		title: r.string(),
 		quantity: r.number().min(0).max(10),
 		termsOfService: r.boolean().accepted(),
 	});
 
-	const formData = FormSchema.parseRequestFormData(request);
+	const formData = Schema.parseRequestFormData(request);
 	// Type ^
 	// {
 	//     title: string;
@@ -86,7 +86,7 @@ Accepts `true`, `"yes"`, `"on"`, `"true"` `"1"`, `1`, `false`, `"no"`, `"off"`, 
 ### Example
 
 ```ts
-const FormSchema = r.form({
+const Schema = r.schema({
 	termsOfService: r.boolean().accepted(),
 });
 ```
@@ -112,13 +112,13 @@ import { ActionArgs } from "@remix-run/server-runtime";
 import { r } from "rod";
 
 const action = ({ request }: ActionArgs) => {
-	const FormSchema = r.form({
+	const Schema = r.schema({
 		title: r.string(),
 		quantity: r.number().min(0).max(10),
 		termsOfService: r.boolean().accepted(),
 	});
 
-	const formDataResult = FormSchema.safeParseRequestFormData(request);
+	const formDataResult = Schema.safeParseRequestFormData(request);
 
 	if (formDataResult.success) {
 		return json({ formData: formDataResult.data });
