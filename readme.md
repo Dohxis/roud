@@ -118,6 +118,28 @@ const Schema = r.schema({
 });
 ```
 
+## Strings
+
+Accepts any string value.
+
+### Available validators
+
+| Validator                                  | Description                                                       |
+| ------------------------------------------ | ----------------------------------------------------------------- |
+| `onlyLetters()`                            | String must only contain letters                                  |
+| `onlyLettersAndNumbers()`                  | String must only contain letters and numbers                      |
+| `onlyLettersNumbersAndDashes()`            | String must only contain letters, numbers and dashes              |
+| `onlyLettersNumbersDashesAndUnderscores()` | String must only contain letters, numbers, dashes and underscores |
+
+### Example
+
+```ts
+const Schema = r.schema({
+	title: r.string().onlyLetters(),
+	username: r.string().onlyLettersNumbersDashesAndUnderscores(),
+});
+```
+
 ## Errors
 
 Roud extends the default `ZodError` which simplifies passing errors back to the form. Here is an basic example:
