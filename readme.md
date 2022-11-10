@@ -12,6 +12,7 @@
 -   [Basic usage](#basic-usage)
 -   [Booleans](#booleans)
 -   [Numbers](#numbers)
+-   [Strings](#strings)
 -   [Errors](#errors)
 
 ## Installation
