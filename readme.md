@@ -10,9 +10,8 @@
 
 -   [Installation](#installation)
 -   [Basic usage](#basic-usage)
--   [Data types](#data-types)
-    -   [Boolean](#boolean)
-    -   [Number](#number)
+-   [Booleans](#booleans)
+-   [Numbers](#numbers)
 -   [Errors](#errors)
 
 ## Installation
@@ -71,20 +70,18 @@ const action = ({ request }: ActionArgs) => {
 
 > If you used Zod before, `parseRequestFormData()` acts the same as `parse()` and throws `RodError` if validation fails. You can also use `safeParseRequestFormData` which instead of throwing will return either the data or `RodError`.
 
-## Data types
-
-### Boolean
+## Booleans
 
 Accepts `true`, `"yes"`, `"on"`, `"true"` `"1"`, `1`, `false`, `"no"`, `"off"`, `"false"` `"0"`, `0` and normalizes the value to either `true` or `false`.
 
-#### Available validations
+### Available validators
 
 | Validator    | Description             |
 | ------------ | ----------------------- |
 | `accepted()` | Boolean must be `true`  |
 | `declined()` | Boolean must be `false` |
 
-#### Example
+### Example
 
 ```ts
 const FormSchema = r.form({
@@ -92,7 +89,7 @@ const FormSchema = r.form({
 });
 ```
 
-### Number
+## Numbers
 
 | Validator                                 | Description                                                               |
 | ----------------------------------------- | ------------------------------------------------------------------------- |
