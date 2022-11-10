@@ -11,6 +11,7 @@ describe("RoudNumber", () => {
 		maxDigits: r.number().maxDigits(5),
 		min: r.number().min(0),
 		minDigits: r.number().minDigits(5),
+		multipleOf: r.number().multipleOf(5),
 	});
 
 	it("should parse() correctly", () => {
@@ -24,6 +25,7 @@ describe("RoudNumber", () => {
 				maxDigits: 1,
 				min: 1,
 				minDigits: 123456789,
+				multipleOf: 10,
 			})
 		).toEqual({
 			between: 5,
@@ -34,6 +36,7 @@ describe("RoudNumber", () => {
 			maxDigits: 1,
 			min: 1,
 			minDigits: 123456789,
+			multipleOf: 10,
 		});
 	});
 
@@ -48,6 +51,7 @@ describe("RoudNumber", () => {
 				maxDigits: "1",
 				min: "1",
 				minDigits: "123456789",
+				multipleOf: "10",
 			})
 		).toEqual({
 			between: 5,
@@ -58,6 +62,7 @@ describe("RoudNumber", () => {
 			maxDigits: 1,
 			min: 1,
 			minDigits: 123456789,
+			multipleOf: 10,
 		});
 
 		expect(r.number().parse("10")).toBe(10);
@@ -93,5 +98,11 @@ describe("RoudNumber", () => {
 
 	it("should throw error when using .integer() validator with non-integer", () => {
 		expect(() => r.number().integer().parse(1.1)).toThrowError(RoudError);
+	});
+
+	it("should throw error when using .multipleOf() validator with non-multiple step number", () => {
+		expect(() => r.number().multipleOf(5).parse(14.9)).toThrowError(
+			RoudError
+		);
 	});
 });

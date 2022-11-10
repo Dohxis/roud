@@ -97,4 +97,40 @@ export class RoudNumber extends RoudType<number> {
 				value.toString().length >= digits,
 		});
 	}
+
+	public multipleOf(number: number) {
+		return this.createCheck(RoudNumber, {
+			failedMessage: ({ attribute }) =>
+				`The ${attribute} must be a multiple of ${number}.`,
+			// Following validator is based from original Zod implemantation
+			// https://github.com/colinhacks/zod/blob/c617ad3edbaf42971485f00042751771c335f9aa/src/types.ts#L752
+			test: ({ value }) => {
+				const valueDecimalsCount = (
+					value.toString().split(".")[1] || ""
+				).length;
+
+				const stepDecimalsCount = (
+					number.toString().split(".")[1] || ""
+				).length;
+
+				const decimalsCount =
+					valueDecimalsCount > stepDecimalsCount
+						? valueDecimalsCount
+						: stepDecimalsCount;
+
+				const valueInteger = parseInt(
+					value.toFixed(decimalsCount).replace(".", "")
+				);
+
+				const stepInteger = parseInt(
+					number.toFixed(decimalsCount).replace(".", "")
+				);
+
+				const floatSafeRemaider =
+					(valueInteger % stepInteger) / Math.pow(10, decimalsCount);
+
+				return floatSafeRemaider === 0;
+			},
+		});
+	}
 }

@@ -107,6 +107,7 @@ Accepts any value parsable by Javascript's `Number()` constructor and normalizes
 | `maxDigits(digits: number)`               | Number must have a maximum length of value                                |
 | `min(number: number)`                     | Number must have a minimum value                                          |
 | `minDigits(digits: number)`               | Number must have a minimum length of value                                |
+| `multipleOf(number: number)`              | Number must must be a multiple of value                                   |
 
 ### Example
 
