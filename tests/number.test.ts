@@ -6,6 +6,7 @@ describe("RoudNumber", () => {
 		between: r.number().between(0, 10),
 		digits: r.number().digits(5),
 		digitsBetween: r.number().digitsBetween(0, 10),
+		integer: r.number().integer(),
 		max: r.number().max(10),
 		maxDigits: r.number().maxDigits(5),
 		min: r.number().min(0),
@@ -18,6 +19,7 @@ describe("RoudNumber", () => {
 				between: 5,
 				digits: 12345,
 				digitsBetween: 123,
+				integer: 123,
 				max: 5,
 				maxDigits: 1,
 				min: 1,
@@ -27,6 +29,7 @@ describe("RoudNumber", () => {
 			between: 5,
 			digits: 12345,
 			digitsBetween: 123,
+			integer: 123,
 			max: 5,
 			maxDigits: 1,
 			min: 1,
@@ -40,6 +43,7 @@ describe("RoudNumber", () => {
 				between: "5",
 				digits: "12345",
 				digitsBetween: "123",
+				integer: "123",
 				max: "5",
 				maxDigits: "1",
 				min: "1",
@@ -49,6 +53,7 @@ describe("RoudNumber", () => {
 			between: 5,
 			digits: 12345,
 			digitsBetween: 123,
+			integer: 123,
 			max: 5,
 			maxDigits: 1,
 			min: 1,
@@ -75,12 +80,18 @@ describe("RoudNumber", () => {
 
 		expect(r.number().maxDigits(2).parse(1)).toBe(1);
 
-		expect(() => r.number().maxDigits(2).parse(1.1)).toThrowError(RoudError);
+		expect(() => r.number().maxDigits(2).parse(1.1)).toThrowError(
+			RoudError
+		);
 
 		expect(r.number().minDigits(2).parse(12)).toBe(12);
 
 		expect(() => r.number().minDigits(2).parse(12.1)).toThrowError(
 			RoudError
 		);
+	});
+
+	it("should throw error when using .integer() validator with non-integer", () => {
+		expect(() => r.number().integer().parse(1.1)).toThrowError(RoudError);
 	});
 });

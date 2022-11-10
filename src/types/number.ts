@@ -51,6 +51,14 @@ export class RoudNumber extends RoudType<number> {
 		});
 	}
 
+	public integer() {
+		return this.createCheck(RoudNumber, {
+			failedMessage: ({ attribute }) =>
+				`The ${attribute} must be an integer.`,
+			test: ({ value }) => Number.isSafeInteger(value),
+		});
+	}
+
 	public max(number: number) {
 		return this.createCheck(RoudNumber, {
 			failedMessage: ({ attribute }) =>
