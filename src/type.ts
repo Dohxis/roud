@@ -9,7 +9,11 @@ import {
 	ZodTypeDef,
 } from "zod";
 import { RodCheck, RodCheckContextInterface, RodCheckInterface } from "./check";
-import { capitalize } from "./utilities";
+import {
+	customParse,
+	customSafeParse,
+	CustomSafeParseReturnType,
+} from "./parsing";
 
 export interface RodTypeDefinition<Output> extends ZodTypeDef {
 	checks: RodCheck<Output>[];
@@ -21,6 +25,10 @@ export abstract class RodType<Output = any, Input = Output> extends ZodType<
 	Input
 > {
 	protected abstract parsedType(): ZodParsedType;
+
+	protected normalizeData(input: unknown): Output | unknown {
+		return input as Output | unknown;
+	}
 
 	protected createCheck<Type extends RodType>(
 		Type: new (args: RodTypeDefinition<Output>) => Type,
@@ -35,44 +43,34 @@ export abstract class RodType<Output = any, Input = Output> extends ZodType<
 	_parse(input: ParseInput): ParseReturnType<Output> {
 		const context = this._getOrReturnCtx(input);
 
-		const expectedParsedType = this.parsedType();
+		const normalizedInput: ParseInput = {
+			...input,
+			data: this.normalizeData(input.data),
+		};
 
-		if (expectedParsedType !== this._getType(input)) {
+		const attribute = (normalizedInput as any)["_key"];
+
+		const currentType = this._getType(normalizedInput);
+
+		const requiredTypes = this.parsedType();
+
+		if (currentType !== requiredTypes) {
 			addIssueToContext(context, {
-				code: ZodIssueCode.invalid_type,
-				expected: expectedParsedType,
-				received: context.parsedType,
+				code: ZodIssueCode.custom,
+				message: `The ${attribute} field must be of type ${requiredTypes}.`,
 			});
 
 			return INVALID;
 		}
 
+		const checkContext: RodCheckContextInterface<Output> = {
+			attribute,
+			value: normalizedInput.data,
+		};
+
 		let anyFailedCheck = false;
 
 		for (const check of this._def.checks) {
-			const attribute = (input as any)["_key"];
-
-			const humanReadableAttribute =
-				attribute === undefined
-					? undefined
-					: capitalize(
-							attribute
-								.replace(
-									/([A-Z])/g,
-									(match: string) => ` ${match}`
-								)
-								.replace(/^./, (match: string) =>
-									match.toUpperCase()
-								)
-								.trim()
-					  );
-
-			const checkContext: RodCheckContextInterface<Output> = {
-				humanReadableAttribute,
-				attribute,
-				value: input.data,
-			};
-
 			if (!check.test(checkContext)) {
 				anyFailedCheck = true;
 
@@ -85,7 +83,19 @@ export abstract class RodType<Output = any, Input = Output> extends ZodType<
 
 		return {
 			status: anyFailedCheck ? "dirty" : "valid",
-			value: input.data,
+			value: normalizedInput.data,
 		};
+	}
+
+	public parse(data: unknown): Output {
+		const result = super.safeParse(data);
+
+		return customParse(result);
+	}
+
+	public safeParse(data: unknown): CustomSafeParseReturnType<Input, Output> {
+		const result = super.safeParse(data);
+
+		return customSafeParse(result);
 	}
 }

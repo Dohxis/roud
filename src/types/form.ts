@@ -9,6 +9,7 @@ import {
 	ZodTypeAny,
 } from "zod";
 import { RodError } from "../error";
+import { customParse, customSafeParse } from "../parsing";
 
 type UnknownKeysParam = "passthrough" | "strict" | "strip";
 
@@ -40,34 +41,12 @@ export class RodForm<
 	public parse(data: unknown): Output {
 		const result = super.safeParse(data);
 
-		if (result.success) {
-			return result.data;
-		}
-
-		const errors: Record<string, string[]> = result.error.errors.reduce(
-			(previousValue, currentValue) => ({
-				...previousValue,
-				[currentValue.path[0]]: currentValue.message,
-			}),
-			{}
-		);
-
-		throw new RodError(errors);
+		return customParse(result);
 	}
 
 	public safeParse(data: unknown): SafeParseReturnType<Input, Output> {
-		try {
-			const result = this.parse(data);
+		const result = super.safeParse(data);
 
-			return {
-				success: true,
-				data: result,
-			};
-		} catch (error) {
-			return {
-				success: false,
-				error: error as RodError<Input>,
-			};
-		}
+		return customSafeParse(result);
 	}
 }
