@@ -1,12 +1,16 @@
-# Rod
-
-Rod is a Laravel-inspired validation library built for Remix powered by Zod.
+<p align="center">
+  <img src="static/logo.png" width="200px" align="center" alt="Rod logo" />
+  <h1 align="center">Rod</h1>
+  <p align="center">
+    Rod is a Laravel-inspired validation library built for Remix powered by Zod
+  </p>
+</p>
 
 ## Table of contents
 
 -   [Installation](#installation)
 -   [Basic usage](#basic-usage)
--   [Validation rules](#validation-rules)
+-   [Data types](#data-types)
     -   [Boolean](#boolean)
     -   [Number](#number)
 -   [Errors](#errors)
@@ -67,14 +71,26 @@ const action = ({ request }: ActionArgs) => {
 
 > If you used Zod before, `parseRequestFormData()` acts the same as `parse()` and throws `RodError` if validation fails. You can also use `safeParseRequestFormData` which instead of throwing will return either the data or `RodError`.
 
-## Validation rules
+## Data types
 
 ### Boolean
 
-| Validator    | Description                                  |
-| ------------ | -------------------------------------------- |
-| `accepted()` | Boolean must be `yes`, `on`, `1`, or `true`  |
-| `declined()` | Boolean must be `no`, `off`, `0`, or `false` |
+Accepts `true`, `"yes"`, `"on"`, `"true"` `"1"`, `1`, `false`, `"no"`, `"off"`, `"false"` `"0"`, `0` and normalizes the value to either `true` or `false`.
+
+#### Available validations
+
+| Validator    | Description             |
+| ------------ | ----------------------- |
+| `accepted()` | Boolean must be `true`  |
+| `declined()` | Boolean must be `false` |
+
+#### Example
+
+```ts
+const FormSchema = r.form({
+	termsOfService: r.boolean().accepted(),
+});
+```
 
 ### Number
 
