@@ -141,6 +141,7 @@ Accepts any string value.
 | `onlyLettersNumbersDashesAndUnderscores()` | String must only contain letters, numbers, dashes and underscores |
 | `regex(regExp: RegExp)`                    | String must match the given regular expression                    |
 | `startsWith(string: string)`               | String must start with a provided value                           |
+| `timeZone()`                               | String must be a valid time zone                                  |
 | `url()`                                    | String must be a valid URL                                        |
 | `uuid()`                                   | String must be a valid UUID                                       |
 

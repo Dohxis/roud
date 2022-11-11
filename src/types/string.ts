@@ -151,6 +151,22 @@ export class RoudString extends RoudType<string> {
 		});
 	}
 
+	public timeZone() {
+		return this.createCheck(RoudString, {
+			failedMessage: ({ attribute }) =>
+				`The ${attribute} must be a valid time zone.`,
+			test: ({ value }) => {
+				try {
+					Intl.DateTimeFormat(undefined, { timeZone: value });
+
+					return true;
+				} catch {
+					return false;
+				}
+			},
+		});
+	}
+
 	public url() {
 		return this.createCheck(RoudString, {
 			failedMessage: ({ attribute }) =>

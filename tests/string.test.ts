@@ -188,6 +188,16 @@ describe("RoudString", () => {
 		).toThrowError(RoudError);
 	});
 
+	it("should validate with timeZone()", () => {
+		expect(r.string().timeZone().parse("Europe/Vilnius")).toEqual(
+			"Europe/Vilnius"
+		);
+
+		expect(() => r.string().timeZone().parse("not.timeZone")).toThrowError(
+			RoudError
+		);
+	});
+
 	it("should validate with url()", () => {
 		expect(r.string().url().parse("http://example.com")).toEqual(
 			"http://example.com"
