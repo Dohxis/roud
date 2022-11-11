@@ -134,4 +134,12 @@ export class RoudString extends RoudType<string> {
 				new RegExp(/^[\p{L}\p{M}\p{N}_-]+$/, "u").test(value),
 		});
 	}
+
+	public regex(regExp: RegExp) {
+		return this.createCheck(RoudString, {
+			failedMessage: ({ attribute }) =>
+				`The ${attribute} format is invalid.`,
+			test: ({ value }) => regExp.test(value),
+		});
+	}
 }

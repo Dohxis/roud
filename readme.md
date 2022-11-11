@@ -139,6 +139,7 @@ Accepts any string value.
 | `onlyLettersAndNumbers()`                  | String must only contain letters and numbers                      |
 | `onlyLettersNumbersAndDashes()`            | String must only contain letters, numbers and dashes              |
 | `onlyLettersNumbersDashesAndUnderscores()` | String must only contain letters, numbers, dashes and underscores |
+| `regex(regExp: RegExp)`                    | String must match the given regular expression                    |
 
 ### Example
 
