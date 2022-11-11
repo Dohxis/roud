@@ -187,4 +187,12 @@ describe("RoudString", () => {
 			r.string().startsWith("Start").parse("startStart")
 		).toThrowError(RoudError);
 	});
+
+	it("should validate with url()", () => {
+		expect(r.string().url().parse("http://example.com")).toEqual(
+			"http://example.com"
+		);
+
+		expect(() => r.string().url().parse("not.url")).toThrowError(RoudError);
+	});
 });

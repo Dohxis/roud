@@ -150,4 +150,20 @@ export class RoudString extends RoudType<string> {
 			test: ({ value }) => value.startsWith(string),
 		});
 	}
+
+	public url() {
+		return this.createCheck(RoudString, {
+			failedMessage: ({ attribute }) =>
+				`The ${attribute} must be a valid URL string.`,
+			test: ({ value }) => {
+				try {
+					new URL(value);
+
+					return true;
+				} catch {
+					return false;
+				}
+			},
+		});
+	}
 }
