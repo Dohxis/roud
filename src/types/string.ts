@@ -64,6 +64,22 @@ export class RoudString extends RoudType<string> {
 		});
 	}
 
+	public json() {
+		return this.createCheck(RoudString, {
+			failedMessage: ({ attribute }) =>
+				`The ${attribute} must be a valid JSON string.`,
+			test: ({ value }) => {
+				try {
+					JSON.parse(value);
+
+					return true;
+				} catch {
+					return false;
+				}
+			},
+		});
+	}
+
 	public onlyLetters() {
 		return this.createCheck(RoudString, {
 			failedMessage: ({ attribute }) =>

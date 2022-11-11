@@ -125,4 +125,14 @@ describe("RoudString", () => {
 			RoudError
 		);
 	});
+
+	it("should validate with json()", () => {
+		expect(r.string().json().parse('{"name": "name"}')).toEqual(
+			'{"name": "name"}'
+		);
+
+		expect(() => r.string().json().parse('{"name": name}')).toThrowError(
+			RoudError
+		);
+	});
 });
