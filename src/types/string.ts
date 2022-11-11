@@ -14,7 +14,7 @@ export class RoudString extends RoudType<string> {
 
 	public doesNotEndWith(string: string) {
 		return this.createCheck(RoudString, {
-			failedMessage: ({ attribute, value }) =>
+			failedMessage: ({ attribute }) =>
 				`The ${attribute} may not end with ${string}.`,
 			test: ({ value }) => !value.endsWith(string),
 		});
@@ -39,6 +39,14 @@ export class RoudString extends RoudType<string> {
 					/^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/,
 					"i"
 				).test(value),
+		});
+	}
+
+	public endsWith(string: string) {
+		return this.createCheck(RoudString, {
+			failedMessage: ({ attribute }) =>
+				`The ${attribute} must end with ${string}.`,
+			test: ({ value }) => value.endsWith(string),
 		});
 	}
 

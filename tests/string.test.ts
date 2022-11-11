@@ -107,4 +107,14 @@ describe("RoudString", () => {
 			RoudError
 		);
 	});
+
+	it("should validate with endsWith()", () => {
+		expect(r.string().endsWith("End").parse("startEnd")).toEqual(
+			"startEnd"
+		);
+
+		expect(() =>
+			r.string().endsWith("End").parse("startStart")
+		).toThrowError(RoudError);
+	});
 });
