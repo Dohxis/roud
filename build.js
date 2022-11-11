@@ -4,6 +4,6 @@ require("esbuild").buildSync({
 	entryPoints: ["src/index.ts"],
 	external: ["zod"],
 	outfile: "dist/index.js",
-	format: "esm",
-	target: ["esnext"],
+	platform: "node",
+	target: ["node16"],
 });
