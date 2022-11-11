@@ -142,4 +142,12 @@ export class RoudString extends RoudType<string> {
 			test: ({ value }) => regExp.test(value),
 		});
 	}
+
+	public startsWith(string: string) {
+		return this.createCheck(RoudString, {
+			failedMessage: ({ attribute }) =>
+				`The ${attribute} must start with ${string}.`,
+			test: ({ value }) => value.startsWith(string),
+		});
+	}
 }

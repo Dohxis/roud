@@ -177,4 +177,14 @@ describe("RoudString", () => {
 				.parse("123")
 		).toThrowError(RoudError);
 	});
+
+	it("should validate with startsWith()", () => {
+		expect(r.string().startsWith("start").parse("startEnd")).toEqual(
+			"startEnd"
+		);
+
+		expect(() =>
+			r.string().startsWith("Start").parse("startStart")
+		).toThrowError(RoudError);
+	});
 });

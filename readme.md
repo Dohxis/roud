@@ -140,6 +140,7 @@ Accepts any string value.
 | `onlyLettersNumbersAndDashes()`            | String must only contain letters, numbers and dashes              |
 | `onlyLettersNumbersDashesAndUnderscores()` | String must only contain letters, numbers, dashes and underscores |
 | `regex(regExp: RegExp)`                    | String must match the given regular expression                    |
+| `startsWith(string: string)`               | String must start with a provided value                           |
 
 ### Example
 
