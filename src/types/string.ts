@@ -50,6 +50,20 @@ export class RoudString extends RoudType<string> {
 		});
 	}
 
+	// Following validator is based from original Zod implemantation
+	// https://github.com/colinhacks/zod/blob/82e72ad359a0758e8bba69794c2880bb6d96be1e/src/types.ts#L527
+	public email() {
+		return this.createCheck(RoudString, {
+			failedMessage: ({ attribute }) =>
+				`The ${attribute} must be a valid email address.`,
+			test: ({ value }) =>
+				new RegExp(
+					/^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/,
+					"i"
+				).test(value),
+		});
+	}
+
 	public onlyLetters() {
 		return this.createCheck(RoudString, {
 			failedMessage: ({ attribute }) =>

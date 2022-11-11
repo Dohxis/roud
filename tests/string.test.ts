@@ -121,4 +121,14 @@ describe("RoudString", () => {
 			r.string().doesNotEndWith(["Start", "End"]).parse("notEndStart")
 		).toThrowError(RoudError);
 	});
+
+	it("should validate with email()", () => {
+		expect(r.string().email().parse("email@email.com")).toEqual(
+			"email@email.com"
+		);
+
+		expect(() => r.string().email().parse("emailemail.com")).toThrowError(
+			RoudError
+		);
+	});
 });
