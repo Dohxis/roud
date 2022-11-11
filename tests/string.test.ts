@@ -135,4 +135,14 @@ describe("RoudString", () => {
 			RoudError
 		);
 	});
+
+	it("should validate with macAddress()", () => {
+		expect(r.string().macAddress().parse("3D:F2:C9:A6:B3:4F")).toEqual(
+			"3D:F2:C9:A6:B3:4F"
+		);
+
+		expect(() =>
+			r.string().macAddress().parse("3D;F2:C9;A6:B3:4F")
+		).toThrowError(RoudError);
+	});
 });

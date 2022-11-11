@@ -80,6 +80,18 @@ export class RoudString extends RoudType<string> {
 		});
 	}
 
+	// The following regular expression was copied from https://stackoverflow.com/a/52970004
+	public macAddress() {
+		return this.createCheck(RoudString, {
+			failedMessage: ({ attribute }) =>
+				`The ${attribute} must be a valid MAC address.`,
+			test: ({ value }) =>
+				new RegExp(
+					/^(?:(?:[0-9A-Fa-f]{2}(?=([-:]))(?:\1[0-9A-Fa-f]{2}){5}))$/
+				).test(value),
+		});
+	}
+
 	public onlyLetters() {
 		return this.createCheck(RoudString, {
 			failedMessage: ({ attribute }) =>
