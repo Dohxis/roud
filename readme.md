@@ -52,14 +52,14 @@ Roud fully extends Zod and for the most parts can be used outside of Remix. For 
 import { ActionArgs } from "@remix-run/server-runtime";
 import { r } from "roud";
 
-const action = ({ request }: ActionArgs) => {
+const action = async ({ request }: ActionArgs) => {
 	const Schema = r.schema({
 		title: r.string(),
 		quantity: r.number().min(0).max(10),
 		termsOfService: r.boolean().accepted(),
 	});
 
-	const formData = Schema.parseRequestFormData(request);
+	const formData = await Schema.parseRequestFormData(request);
 	// Type ^
 	// {
 	//     title: string;
@@ -162,14 +162,14 @@ Roud extends the default `ZodError` which simplifies passing errors back to the 
 import { ActionArgs } from "@remix-run/server-runtime";
 import { r } from "roud";
 
-const action = ({ request }: ActionArgs) => {
+const action = async ({ request }: ActionArgs) => {
 	const Schema = r.schema({
 		title: r.string(),
 		quantity: r.number().min(0).max(10),
 		termsOfService: r.boolean().accepted(),
 	});
 
-	const formDataResult = Schema.safeParseRequestFormData(request);
+	const formDataResult = await Schema.safeParseRequestFormData(request);
 
 	if (formDataResult.success) {
 		return json({ formData: formDataResult.data });
