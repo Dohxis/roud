@@ -99,4 +99,26 @@ describe("RoudString", () => {
 			r.string().doesNotStartWith(["start", "end"]).parse("startNotEnd")
 		).toThrowError(RoudError);
 	});
+
+	it("should validate with doesNotEndWith()", () => {
+		expect(r.string().doesNotEndWith("end").parse("endStart")).toEqual(
+			"endStart"
+		);
+
+		expect(
+			r.string().doesNotEndWith(["start", "end"]).parse("startEndNot")
+		).toEqual("startEndNot");
+
+		expect(() =>
+			r.string().doesNotEndWith("Start").parse("endStart")
+		).toThrowError(RoudError);
+
+		expect(() =>
+			r.string().doesNotEndWith(["Start", "End"]).parse("notStartEnd")
+		).toThrowError(RoudError);
+
+		expect(() =>
+			r.string().doesNotEndWith(["Start", "End"]).parse("notEndStart")
+		).toThrowError(RoudError);
+	});
 });

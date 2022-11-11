@@ -12,6 +12,25 @@ export class RoudString extends RoudType<string> {
 		return ZodParsedType.string;
 	}
 
+	public doesNotEndWith(string: string | string[]) {
+		return this.createCheck(RoudString, {
+			failedMessage: ({ attribute, value }) =>
+				`The ${attribute} may not end with ${
+					Array.isArray(string)
+						? string.find((singleString) =>
+								value.endsWith(singleString)
+						  )
+						: string
+				}.`,
+			test: ({ value }) =>
+				Array.isArray(string)
+					? string.every(
+							(singleString) => !value.endsWith(singleString)
+					  )
+					: !value.endsWith(string),
+		});
+	}
+
 	public doesNotStartWith(string: string | string[]) {
 		return this.createCheck(RoudString, {
 			failedMessage: ({ attribute, value }) =>

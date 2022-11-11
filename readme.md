@@ -127,6 +127,7 @@ Accepts any string value.
 
 | Validator                                      | Description                                                       |
 | ---------------------------------------------- | ----------------------------------------------------------------- |
+| `doesNotEndWith(string: string \| string[])`   | String must not end with any of a provided values                 |
 | `doesNotStartWith(string: string \| string[])` | String must not start with any of a provided values               |
 | `onlyLetters()`                                | String must only contain letters                                  |
 | `onlyLettersAndNumbers()`                      | String must only contain letters and numbers                      |
