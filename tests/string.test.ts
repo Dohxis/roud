@@ -77,4 +77,26 @@ describe("RoudString", () => {
 				.parse("ĄČĘĖĮŠŲŪ()[]")
 		).toThrowError(RoudError);
 	});
+
+	it("should validate with doesNotStartWith()", () => {
+		expect(r.string().doesNotStartWith("end").parse("startEnd")).toEqual(
+			"startEnd"
+		);
+
+		expect(
+			r.string().doesNotStartWith(["start", "end"]).parse("notStartEnd")
+		).toEqual("notStartEnd");
+
+		expect(() =>
+			r.string().doesNotStartWith("start").parse("startEnd")
+		).toThrowError(RoudError);
+
+		expect(() =>
+			r.string().doesNotStartWith(["start", "end"]).parse("endNotStart")
+		).toThrowError(RoudError);
+
+		expect(() =>
+			r.string().doesNotStartWith(["start", "end"]).parse("startNotEnd")
+		).toThrowError(RoudError);
+	});
 });

@@ -12,6 +12,25 @@ export class RoudString extends RoudType<string> {
 		return ZodParsedType.string;
 	}
 
+	public doesNotStartWith(string: string | string[]) {
+		return this.createCheck(RoudString, {
+			failedMessage: ({ attribute, value }) =>
+				`The ${attribute} may not start with ${
+					Array.isArray(string)
+						? string.find((singleString) =>
+								value.startsWith(singleString)
+						  )
+						: string
+				}.`,
+			test: ({ value }) =>
+				Array.isArray(string)
+					? string.every(
+							(singleString) => !value.startsWith(singleString)
+					  )
+					: !value.startsWith(string),
+		});
+	}
+
 	public onlyLetters() {
 		return this.createCheck(RoudString, {
 			failedMessage: ({ attribute }) =>
