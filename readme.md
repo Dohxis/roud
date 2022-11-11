@@ -130,6 +130,8 @@ Accepts any string value.
 | `doesNotEndWith(string: string)`           | String must not end with a provided value                         |
 | `doesNotStartWith(string: string)`         | String must not start with a provided value                       |
 | `email()`                                  | String must be a valid email address                              |
+| `endsWith(string: string)`                 | String must end with a provided value                             |
+| `ipAddress()`                              | String must be a valid IPv4 address                               |
 | `onlyLetters()`                            | String must only contain letters                                  |
 | `onlyLettersAndNumbers()`                  | String must only contain letters and numbers                      |
 | `onlyLettersNumbersAndDashes()`            | String must only contain letters, numbers and dashes              |

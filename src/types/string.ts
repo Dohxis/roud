@@ -50,6 +50,20 @@ export class RoudString extends RoudType<string> {
 		});
 	}
 
+	// The following regular expression was copied from https://stackoverflow.com/a/36760050
+	// and matches only IPv4 addresses. In a future version, we should add support for
+	// IPv6 addresses as well.
+	public ipAddress() {
+		return this.createCheck(RoudString, {
+			failedMessage: ({ attribute }) =>
+				`The ${attribute} must be a valid IP address.`,
+			test: ({ value }) =>
+				new RegExp(/^((25[0-5]|(2[0-4]|1\d|[1-9]|)\d)\.?\b){4}$/).test(
+					value
+				),
+		});
+	}
+
 	public onlyLetters() {
 		return this.createCheck(RoudString, {
 			failedMessage: ({ attribute }) =>

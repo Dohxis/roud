@@ -117,4 +117,12 @@ describe("RoudString", () => {
 			r.string().endsWith("End").parse("startStart")
 		).toThrowError(RoudError);
 	});
+
+	it("should validate with ipAddress()", () => {
+		expect(r.string().ipAddress().parse("1.1.1.1")).toEqual("1.1.1.1");
+
+		expect(() => r.string().ipAddress().parse("01.01.01.01")).toThrowError(
+			RoudError
+		);
+	});
 });
