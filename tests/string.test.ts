@@ -83,20 +83,8 @@ describe("RoudString", () => {
 			"startEnd"
 		);
 
-		expect(
-			r.string().doesNotStartWith(["start", "end"]).parse("notStartEnd")
-		).toEqual("notStartEnd");
-
 		expect(() =>
 			r.string().doesNotStartWith("start").parse("startEnd")
-		).toThrowError(RoudError);
-
-		expect(() =>
-			r.string().doesNotStartWith(["start", "end"]).parse("endNotStart")
-		).toThrowError(RoudError);
-
-		expect(() =>
-			r.string().doesNotStartWith(["start", "end"]).parse("startNotEnd")
 		).toThrowError(RoudError);
 	});
 
@@ -105,20 +93,8 @@ describe("RoudString", () => {
 			"endStart"
 		);
 
-		expect(
-			r.string().doesNotEndWith(["start", "end"]).parse("startEndNot")
-		).toEqual("startEndNot");
-
 		expect(() =>
 			r.string().doesNotEndWith("Start").parse("endStart")
-		).toThrowError(RoudError);
-
-		expect(() =>
-			r.string().doesNotEndWith(["Start", "End"]).parse("notStartEnd")
-		).toThrowError(RoudError);
-
-		expect(() =>
-			r.string().doesNotEndWith(["Start", "End"]).parse("notEndStart")
 		).toThrowError(RoudError);
 	});
 

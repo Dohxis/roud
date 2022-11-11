@@ -125,15 +125,15 @@ Accepts any string value.
 
 ### Available validators
 
-| Validator                                      | Description                                                       |
-| ---------------------------------------------- | ----------------------------------------------------------------- |
-| `doesNotEndWith(string: string \| string[])`   | String must not end with any of a provided values                 |
-| `doesNotStartWith(string: string \| string[])` | String must not start with any of a provided values               |
-| `email()`                                      | String must be a valid email address                              |
-| `onlyLetters()`                                | String must only contain letters                                  |
-| `onlyLettersAndNumbers()`                      | String must only contain letters and numbers                      |
-| `onlyLettersNumbersAndDashes()`                | String must only contain letters, numbers and dashes              |
-| `onlyLettersNumbersDashesAndUnderscores()`     | String must only contain letters, numbers, dashes and underscores |
+| Validator                                  | Description                                                       |
+| ------------------------------------------ | ----------------------------------------------------------------- |
+| `doesNotEndWith(string: string)`           | String must not end with a provided value                         |
+| `doesNotStartWith(string: string)`         | String must not start with a provided value                       |
+| `email()`                                  | String must be a valid email address                              |
+| `onlyLetters()`                            | String must only contain letters                                  |
+| `onlyLettersAndNumbers()`                  | String must only contain letters and numbers                      |
+| `onlyLettersNumbersAndDashes()`            | String must only contain letters, numbers and dashes              |
+| `onlyLettersNumbersDashesAndUnderscores()` | String must only contain letters, numbers, dashes and underscores |
 
 ### Example
 
