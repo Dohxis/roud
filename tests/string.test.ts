@@ -145,4 +145,20 @@ describe("RoudString", () => {
 			r.string().macAddress().parse("3D;F2:C9;A6:B3:4F")
 		).toThrowError(RoudError);
 	});
+
+	it("should validate with notRegex()", () => {
+		expect(
+			r
+				.string()
+				.notRegex(/^[a-z]+$/)
+				.parse("123")
+		).toEqual("123");
+
+		expect(() =>
+			r
+				.string()
+				.notRegex(/^[a-z]+$/)
+				.parse("abc")
+		).toThrowError(RoudError);
+	});
 });

@@ -92,6 +92,14 @@ export class RoudString extends RoudType<string> {
 		});
 	}
 
+	public notRegex(regExp: RegExp) {
+		return this.createCheck(RoudString, {
+			failedMessage: ({ attribute }) =>
+				`The ${attribute} format is invalid.`,
+			test: ({ value }) => !regExp.test(value),
+		});
+	}
+
 	public onlyLetters() {
 		return this.createCheck(RoudString, {
 			failedMessage: ({ attribute }) =>
