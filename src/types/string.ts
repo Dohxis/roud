@@ -154,7 +154,7 @@ export class RoudString extends RoudType<string> {
 	public url() {
 		return this.createCheck(RoudString, {
 			failedMessage: ({ attribute }) =>
-				`The ${attribute} must be a valid URL string.`,
+				`The ${attribute} must be a valid URL.`,
 			test: ({ value }) => {
 				try {
 					new URL(value);
@@ -164,6 +164,20 @@ export class RoudString extends RoudType<string> {
 					return false;
 				}
 			},
+		});
+	}
+
+	// Following validator is based from original Zod implemantation
+	// https://github.com/colinhacks/zod/blob/82e72ad359a0758e8bba69794c2880bb6d96be1e/src/types.ts#L538
+	public uuid() {
+		return this.createCheck(RoudString, {
+			failedMessage: ({ attribute }) =>
+				`The ${attribute} must be a valid UUID.`,
+			test: ({ value }) =>
+				new RegExp(
+					/^([a-f0-9]{8}-[a-f0-9]{4}-[1-5][a-f0-9]{3}-[a-f0-9]{4}-[a-f0-9]{12}|00000000-0000-0000-0000-000000000000)$/,
+					"i"
+				).test(value),
 		});
 	}
 }

@@ -142,6 +142,7 @@ Accepts any string value.
 | `regex(regExp: RegExp)`                    | String must match the given regular expression                    |
 | `startsWith(string: string)`               | String must start with a provided value                           |
 | `url()`                                    | String must be a valid URL                                        |
+| `uuid()`                                   | String must be a valid UUID                                       |
 
 ### Example
 

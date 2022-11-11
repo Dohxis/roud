@@ -195,4 +195,14 @@ describe("RoudString", () => {
 
 		expect(() => r.string().url().parse("not.url")).toThrowError(RoudError);
 	});
+
+	it("should validate with uuid()", () => {
+		expect(
+			r.string().uuid().parse("0a55ab95-60d1-4590-b8fe-867a8221fd10")
+		).toEqual("0a55ab95-60d1-4590-b8fe-867a8221fd10");
+
+		expect(() => r.string().uuid().parse("not.uuid")).toThrowError(
+			RoudError
+		);
+	});
 });
