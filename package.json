@@ -1,21 +1,26 @@
 {
 	"name": "roud",
-	"version": "1.0.0",
-	"description": "Remix form data validator powered by Zod",
+	"version": "0.1.1",
+	"description": "Roud is a Laravel-inspired validation library built for Remix powered by Zod",
 	"keywords": [
 		"remix",
 		"zod",
 		"form",
+		"validate",
 		"validator"
 	],
 	"author": "Domantas Mauruča <domantas.mauruca@gmail.com>",
+	"bugs": {
+		"url": "https://github.com/Dohxis/roud/issues"
+	},
+	"homepage": "https://github.com/Dohxis/roud",
 	"license": "MIT",
 	"files": [
 		"dist"
 	],
 	"main": "dist/index.js",
 	"module": "dist/index.js",
-	"types": "dist/index.d.ts",
+	"types": "dist/src/index.d.ts",
 	"scripts": {
 		"build": "node build.js && tsc -b",
 		"test": "vitest"
