@@ -49,4 +49,18 @@ export class RoudSchema<
 
 		return customSafeParse(result);
 	}
+
+	public async parseRequestFormData(request: Request): Promise<Output> {
+		const formData = await request.formData();
+
+		return this.parse(Object.fromEntries(formData.entries()));
+	}
+
+	public async safeParseRequestFormData(
+		request: Request
+	): Promise<SafeParseReturnType<Input, Output>> {
+		const formData = await request.formData();
+
+		return this.safeParse(Object.fromEntries(formData.entries()));
+	}
 }
